@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <div style="display: flex; flex-wrap: wrap">
+            <input id="in" style="width: 100%" type="text">
+            <button id="transform" style="width: 100%">transform</button>
+            <a id="out" href="" style="width: 100%" target="_blank"></a>
+        </div>
+        <script>
+            document.querySelector('#transform').addEventListener('click', () =>{
+              const input = document.querySelector('#in').value;
+
+              const hrefReplacePath = input.replace('https://store.steampowered.com/app/', 'https://steamcommunity.com/games/');
+              const hrefStripLastSlash = hrefReplacePath[hrefReplacePath.length-1] === '/' ? hrefReplacePath.slice(0, -1) : hrefReplacePath;
+              const hrefStripProductName = hrefStripLastSlash.slice(0, hrefStripLastSlash.lastIndexOf("/"));
+              const href = hrefStripProductName+"/rss";
+              console.warn(href);
+              document.querySelector('#out').href = href;
+              document.querySelector('#out').innerText = href;
+            } )
+        </script>
+    </body>
+</html>
